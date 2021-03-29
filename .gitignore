@@ -32,3 +32,5 @@
 
 # vercel
 /front-end.vercel
+
+/back-end/.env
