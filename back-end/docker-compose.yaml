@@ -6,6 +6,10 @@ services:
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
+  test:
+    build: ./test
+    ports: ["49160:8080"]
+
   adminer:
     image: adminer
     restart: always
