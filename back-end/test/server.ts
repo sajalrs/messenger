@@ -1,6 +1,4 @@
-'use strict';
-
-const express = require('express');
+import express from 'express';
 
 // Constants
 const PORT = 8080;
@@ -8,7 +6,7 @@ const HOST = '0.0.0.0';
 
 // App
 const app = express();
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
   res.send('Hello World');
 });
 
