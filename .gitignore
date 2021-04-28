@@ -35,6 +35,7 @@ yarn.lock
 /front-end.vercel
 
 /back-end/.env
+/back-end/postgres-data/
 /back-end/reverse-proxy/nginx/*
 !/back-end/reverse-proxy/nginx/nginx.conf
 !/back-end/reverse-proxy/nginx/conf.d

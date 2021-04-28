@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {                    
+    "target": "es5",                               
+    "module": "commonjs",                           
+    "strict": true,                                
+    "skipLibCheck": true,                           
+    "forceConsistentCasingInFileNames": true    ,    
+    "allowJs": true,
+    "alwaysStrict": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": ["dom", "es2017"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+  }
+}
