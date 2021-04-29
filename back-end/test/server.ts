@@ -1,13 +1,18 @@
-import express from 'express';
-
+import express from "express";
+// import pool from "./db";
 // Constants
 const PORT = 8080;
-const HOST = '0.0.0.0';
+const HOST = "0.0.0.0";
 
 // App
 const app = express();
-app.get('/', (_, res) => {
-  res.send('Hello World');
+app.use(express.json());
+app.get("/", (_, res) => {
+  res.send("Hello World");
+});
+
+app.post("/user", async (_, __) => {
+  console.log("Hi");
 });
 
 app.listen(PORT, HOST);
