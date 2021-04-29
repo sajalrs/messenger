@@ -17,7 +17,7 @@ app.post("/", async (req, res) => {
       [firstName, lastName]
     );
 
-    res.json(newUser);
+    res.json(newUser.rows[0]);
   } catch (err) {
     console.log(err.message);
   }
