@@ -1,5 +1,5 @@
 import express from "express";
-// import pool from "./db";
+import ConnectionPool from "./db";
 // Constants
 const PORT = 8080;
 const HOST = "0.0.0.0";
@@ -10,7 +10,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.post("/", async (req, res) => {
-  res.send(req.body);
+  try {
+    const { firstName, lastName } = req.body;
+    const newUser = await ConnectionPool.query(
+      "INSERT INTO users (first_name, last_name) VALUES ($1, $2) RETURNING *",
+      [firstName, lastName]
+    );
+
+    res.json(newUser);
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 app.listen(PORT, HOST);

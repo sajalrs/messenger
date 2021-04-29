@@ -28,6 +28,7 @@ services:
     restart: always
     volumes:
       - ./test:/usr/src/app
+    env_file: ./.env
     ports: ["49160:8080"]
 
   test2:
@@ -35,4 +36,5 @@ services:
     restart: always
     volumes:
       - ./test2:/usr/src/app
+    env_file: ./.env
     ports: ["49161:8080"]
