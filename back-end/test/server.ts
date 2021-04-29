@@ -6,13 +6,11 @@ const HOST = "0.0.0.0";
 
 // App
 const app = express();
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.get("/", (_, res) => {
-  res.send("Hello World");
-});
 
-app.post("/user", async (_, __) => {
-  console.log("Hi");
+app.post("/", async (req, res) => {
+  res.send(req.body);
 });
 
 app.listen(PORT, HOST);
