@@ -1,26 +1,27 @@
 import { ApolloServer, gql } from "apollo-server";
+import { buildFederatedSchema } from "@apollo/federation";
 import ConnectionPool from "./db";
 
 const PORT = 8080;
 
 const typeDefs = gql`
-  type User {
+  type User @key(fields: "user_id") {
     user_id: ID!
     first_name: String
     last_name: String
   }
 
-  type Query {
+  extend type Query {
     user(user_id: ID!): User
     users: [User]
   }
 
-  type Mutation {
+  extend type Mutation {
     register(first_name: String!, last_name: String!): User!
   }
 `;
 
-const resolvers = {
+const resolvers: any = {
   Query: {
     user: async (_: any, args: { user_id: String }, __: any) => {
       try {
@@ -65,11 +66,11 @@ const resolvers = {
   },
 };
 
-const server = new ApolloServer({
+const server = new ApolloServer({schema: buildFederatedSchema([{
   typeDefs,
   resolvers,
-});
+}])});
 
 server.listen(PORT).then(() => {
-  console.log(`GraphQL Server Running`);
+  console.log(`Users Service Ready`);
 });

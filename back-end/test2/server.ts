@@ -1,19 +1,16 @@
-import express from "express";
-import ConnectionPool from "./db";
-// Constants
-const PORT = 8080;
-const HOST = "0.0.0.0";
+import { ApolloServer } from "apollo-server";
+import { ApolloGateway } from "@apollo/gateway";
 
-// App
-const app = express();
-app.get("/", async (_, res) => {
-  try {
-    const allUsers = await ConnectionPool.query("SELECT * FROM users");
-    res.json(allUsers.rows);
-  } catch (err) {
-    console.log(err.message);
-  }
+const PORT = 8080;
+
+const gateway = new ApolloGateway({
+  serviceList: [{ name: "users", url: "http://test:8080/" }],
 });
 
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+const server = new ApolloServer({
+  gateway,
+  subscriptions: false,
+});
+server.listen(PORT).then(() => {
+  console.log(`GraphQL Server Running`);
+});
